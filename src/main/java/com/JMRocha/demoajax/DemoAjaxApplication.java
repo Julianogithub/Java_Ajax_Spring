@@ -6,7 +6,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.JMRocha.demoajax.service.SocialMetaTagService;
-import com.JMRocha.demoajax.domain.SocialMetaTag;
 
 @SpringBootApplication
 public class DemoAjaxApplication implements CommandLineRunner {
@@ -14,18 +13,13 @@ public class DemoAjaxApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(DemoAjaxApplication.class, args);
 	}
-	
-	
+
 	@Autowired
 	SocialMetaTagService service;
 	
 	@Override
-	public void run(String... args) throws Exception {
-		
-		SocialMetaTag tag = service.getSocialMetaTagByUrl("https://naturalmed.com.br/produto/curcuma-plus-60-caps-vitafor/");
-		System.out.println("\n\t" + tag.toString()+"\n");
-		
-				
+	public void run(String... args) throws Exception {	
+		//Link para usar de referencia para teste
+		//https://hotmart.com/pt-br/marketplace/produtos/fluxo-da-riqueza/R18809291H?sck=HOTMART_SITE				
 	}
-
 }

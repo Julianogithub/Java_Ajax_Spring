@@ -12,6 +12,14 @@ $("#linkPromocao").on('change', function() {
 			url: "/meta/info?url=" + url, // Capiturando ocaminho da URL na classes Java para exibição na pagina WEB
 			cache: false,//Não fazer o uso do cache
 			
+			beforeSend: function() {
+				$("#alert").removeClass("alert alert-danger").text('');
+				$("#titulo").val("");
+				$("#site").text("");
+				$("#linkImagem").attr("src", "");
+				$("#loader-img").addClass("loader");
+			},
+			
 			success: function( data ) {
 				console.log(data);
 				//comecção MVC com o --> * HTML, JAVA, SQL *
@@ -29,6 +37,9 @@ $("#linkPromocao").on('change', function() {
 			error: function() {
 				$("#alert").addClass("alert alert-danger").text("Ops... algo deu errado, tente mais tarde.");
 				$("#linkImagem").attr("src", "/images/promo-dark.png");
+			},
+			complete: function() {
+				$("#loader-img").removeClass("loader");
 			}
 		});
 	}

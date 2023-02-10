@@ -24,6 +24,9 @@ public class DemoAjaxApplication implements CommandLineRunner {
 		SocialMetaTag og = service.getSocialMetaTagByUrl("https://naturalmed.com.br/produto/curcuma-plus-60-caps-vitafor/");
 		System.out.println("\n\t"+og.toString()+"\n");
 		
+		SocialMetaTag twitter = service.getTwitterCardByUrl("https://naturalmed.com.br/produto/curcuma-plus-60-caps-vitafor/");
+		System.out.println("\n\t" + twitter.toString()+"\n");
+		
 	}
 
 }

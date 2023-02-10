@@ -27,3 +27,9 @@ git status
 git commit -m "NOME do que foi feito no Progeto"
 git log
 git push
+
+_____________________________________________________________________________________________
+
+	* Comandos para resetar o commit errado *
+
+git reset HEAD~1

@@ -33,3 +33,9 @@ ________________________________________________________________________________
 	* Comandos para resetar o commit errado *
 
 git reset HEAD~1
+
+_____________________________________________________________________________________________
+
+	* Comandos para sair do git log *
+
+O botão q , ele deverá sair do log

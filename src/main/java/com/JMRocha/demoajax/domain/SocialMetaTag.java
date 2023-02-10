@@ -1,4 +1,4 @@
-package com.JMRocha.demo.model;
+package com.JMRocha.demoajax.domain;
 
 import java.io.Serializable;
 

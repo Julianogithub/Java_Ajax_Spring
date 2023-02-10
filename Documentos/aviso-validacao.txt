@@ -1,0 +1,10 @@
+ATENÇÃO
+=======
+
+Se você selecionou a versão Spring Boot 2.3.x ou superiores será necessário 
+incluir no pom.xml um novo starter para uso de validação back-end:
+
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>

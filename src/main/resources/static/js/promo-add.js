@@ -1,6 +1,52 @@
+//submit do formulario para o controller
+$("#form-add-promo").submit(function(evt) {
+	//bloquear o comportamento padrão do submit
+	evt.preventDefault();
+	
+	var promo = {};
+	promo.linkPromocao = $("#linkPromocao").val();
+	promo.descricao = $("#descricao").val();
+	promo.preco = $("#preco").val();
+	promo.titulo = $("#titulo").val();
+	promo.categoria = $("#categoria").val();
+	promo.linkImagem = $("#linkImagem").attr("src");
+	promo.site = $("#site").text();
+	
+	console.log('promo > ', promo);
+	
+	$.ajax({
+		method: "POST",
+		url: "/promocao/save",
+		data: promo,
+		beforeSend: function() {
+			$("#form-add-promo").hide();
+			$("#loader-form").addClass("loader").show();
+		},
+		success: function() {
+			$("#form-add-promo").each(function() {
+				this.reset();
+			});
+			$("#linkImagem").attr("src", "/images/promo-dark.png");
+			$("#site").text("");
+			$("#alert").addClass("alert alert-success").text("OK! Promoção cadastrada com sucesso.");
+		},
+		error: function(xhr) {
+			console.log("> error: ", xhr.responseText);
+			$("#alert").addClass("alert alert-danger").text("Não foi possível salvar esta promoção.");
+		},
+		complete: function() {
+			$("#loader-form").fadeOut(1000, function() {
+				$("#form-add-promo").fadeIn(250);
+				$("#loader-form").removeClass("loader");
+			});
+		}
+	});
+});
+
+
+//____________________________________________________________________________________
 // funcao para capturar as meta tags
 // Tendo acesso ao link da pagina promo-add.html --> id="linkPromocao"
-
 $("#linkPromocao").on('change', function() {
 
 	var url = $(this).val();// Recuperando o valo do campo imput na pagina --> promo-add.html
@@ -12,8 +58,9 @@ $("#linkPromocao").on('change', function() {
 			url: "/meta/info?url=" + url, // Capiturando ocaminho da URL na classes Java para exibição na pagina WEB
 			cache: false,//Não fazer o uso do cache
 			
+			
 			beforeSend: function() {
-				$("#alert").removeClass("alert alert-danger").text('');
+				$("#alert").removeClass("alert alert-danger alert-success").text('');
 				$("#titulo").val("");
 				$("#site").text("");
 				$("#linkImagem").attr("src", "");
@@ -34,10 +81,12 @@ $("#linkPromocao").on('change', function() {
 					$("#linkImagem").attr("src", "/images/promo-dark.png");
 				}
 			},
+			
 			error: function() {
 				$("#alert").addClass("alert alert-danger").text("Ops... algo deu errado, tente mais tarde.");
 				$("#linkImagem").attr("src", "/images/promo-dark.png");
 			},
+			
 			complete: function() {
 				$("#loader-img").removeClass("loader");
 			}

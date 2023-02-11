@@ -45,6 +45,6 @@ public class Categoria implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\n\tCategoria \n\tid=" + id + ",\n\t titulo=" + titulo + "\n\n";
+		return "\n\t\tCategoria do Produto \n\t\t{\n\t\t|Id = " + id + ",\n\t\t|Titulo = " + titulo + "\n\t\t}";
 	}
 }

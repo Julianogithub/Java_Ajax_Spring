@@ -129,9 +129,9 @@ public class Promocao implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\n\tPromocao \n\tid=" + id + ", \n\ttitulo=" + titulo + ",\n\t linkPromocao=" + linkPromocao + 
-				",\n\t site=" + site + ",\n\t descricao=" + descricao + ",\n\t linkImagem=" + linkImagem + 
-				",\n\t preco=" + preco + ",\n\t likes=" + likes	+ ",\n\t dtCadastro=" + dtCadastro + 
-				",\n\t categoria=" + categoria + "\n\n";
+		return "\n\tPromocao \n\t{\n\t|Id = " + id + ",\n\t|Titulo = " + titulo + ",\n\t|Link de Promocao = " + linkPromocao + 
+				",\n\t|Site = " + site + ",\n\t|Descricao = " + descricao + ",\n\t|Link da Imagem = " + linkImagem + 
+				",\n\t|Preco = " + preco + ",\n\t|Likes = " + likes	+ ",\n\t|Data do cadastro Cadastro = " + dtCadastro + 
+				",\n\t|Categoria = " + categoria + "\n\t}";
 	}	
 }

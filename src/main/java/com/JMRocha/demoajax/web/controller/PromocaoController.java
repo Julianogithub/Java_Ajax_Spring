@@ -51,6 +51,15 @@ public class PromocaoController {
 			System.out.println("\n\t"+sites+"\n");
 			return ResponseEntity.ok(sites);
 		}
+		
+		@GetMapping("/site/list")
+		public String listarPorSite(@RequestParam("site") String site, ModelMap model) {
+			Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
+			PageRequest pageRequest = PageRequest.of(0, 8, sort);
+			model.addAttribute("promocoes", promocaoRepository.findBySite(site, pageRequest));
+			return "promo-card";
+		}
+		
 	
 	// ======================================ADD LIKES===============================================
 	
@@ -76,13 +85,18 @@ public class PromocaoController {
 	}
 	
 	@GetMapping("/list/ajax")
-	public String listarCards(@RequestParam(name = "page", defaultValue = "1") int page, ModelMap model) {
+	public String listarCards(@RequestParam(name = "page", defaultValue = "1") int page, 
+			                  @RequestParam(name = "site", defaultValue = "") String site,
+			                  ModelMap model) {
+		
 		Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
 		PageRequest pageRequest = PageRequest.of(page, 8, sort);
-		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));	
 		
-		//System.out.println("\n\tSort2: "+ sort + "\n\tPaga Request2: " + pageRequest + "\n\tPaga2: " + page);
-		
+		if (site.isEmpty()) {
+			model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
+		} else {
+			model.addAttribute("promocoes", promocaoRepository.findBySite(site, pageRequest));
+		}
 		return "promo-card";
 	}	
 	

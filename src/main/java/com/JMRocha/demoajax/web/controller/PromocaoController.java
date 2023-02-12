@@ -47,7 +47,7 @@ public class PromocaoController {
 	public String listarOfertas(ModelMap model) {
 		
 		Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(0, 12, sort);
+		PageRequest pageRequest = PageRequest.of(0, 8, sort);
 		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
 		System.out.println("\n\tSort: "+ sort + "\n\tPaga Request: " + pageRequest);
 		
@@ -57,7 +57,7 @@ public class PromocaoController {
 	@GetMapping("/list/ajax")
 	public String listarCards(@RequestParam(name = "page", defaultValue = "1") int page, ModelMap model) {
 		Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
-		PageRequest pageRequest = PageRequest.of(page, 12, sort);
+		PageRequest pageRequest = PageRequest.of(page, 8, sort);
 		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));	
 		System.out.println("\n\tSort2: "+ sort + "\n\tPaga Request2: " + pageRequest + "\n\tPaga2: " + page);
 		return "promo-card";

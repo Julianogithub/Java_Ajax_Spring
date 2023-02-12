@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "categorias")
@@ -16,6 +18,8 @@ public class Categoria implements Serializable {
 	@Column(name = "titulo", nullable = false, unique = true)
 	private String titulo;
 	
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "categoria") // Uma Categoria podera ter N Promoções
 	private List<Promocao> promocoes;  // Relacionamento de dados ( 1 para *N )	
 

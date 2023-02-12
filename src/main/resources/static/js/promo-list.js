@@ -21,6 +21,9 @@ $(window).scroll(function() {
 	}	
 });
 
+
+//======================= function loadByScrollBar ==========================
+
 function loadByScrollBar(pageNumber) {
 	
 	$.ajax({
@@ -61,3 +64,29 @@ function loadByScrollBar(pageNumber) {
 		
 	})
 }
+
+//========= Adicionar capitura de likes * FUNÇÃO PARA TESTE * ==========================
+/*
+$("button[id*='likes-btn-']").on("click",function() {
+	var id = $(this).attr("id").split("-")[2];
+	console.log("id: ", id);
+});
+*/
+//======================= Adicionar likes ==================================
+
+$(document).on("click", "button[id*='likes-btn-']", function() {
+	var id = $(this).attr("id").split("-")[2];
+	console.log("id: ", id);
+	
+	$.ajax({
+		method: "POST",
+		url: "/promocao/like/" + id,
+		success: function(response) {
+			$("#likes-count-" + id).text(response);
+		},
+		error: function(xhr) {
+			alert("Ops, ocorreu um erro: " + xhr.status + ", " + xhr.statusText);
+		}
+	});
+});
+

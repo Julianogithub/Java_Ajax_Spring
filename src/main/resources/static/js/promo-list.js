@@ -65,14 +65,31 @@ function loadByScrollBar(pageNumber) {
 	})
 }
 
+//========= Autocomplete ==========================
+
+$("#autocomplete-input").autocomplete({
+	source: function(request, response) {
+		$.ajax({
+			method: "GET",
+			url: "/promocao/site", 
+			data: {
+				termo: request.term
+			},
+			success: function(result) {
+				response(result);
+			}
+		});
+	}
+});
+
 //========= Adicionar capitura de likes * FUNÇÃO PARA TESTE * ==========================
 /*
-$("button[id*='likes-btn-']").on("click",function() {
-	var id = $(this).attr("id").split("-")[2];
-	console.log("id: ", id);
-});
+*			$("button[id*='likes-btn-']").on("click",function() {
+*				var id = $(this).attr("id").split("-")[2];
+*				console.log("id: ", id);
+*			});
 */
-//======================= Adicionar likes ==================================
+//======================= Adicionar likes ==============================================
 
 $(document).on("click", "button[id*='likes-btn-']", function() {
 	var id = $(this).attr("id").split("-")[2];

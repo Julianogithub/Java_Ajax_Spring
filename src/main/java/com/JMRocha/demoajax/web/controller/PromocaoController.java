@@ -42,6 +42,16 @@ public class PromocaoController {
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
+	// ======================================AUTOCOMPLETE===============================================
+	
+		@GetMapping("/site")
+		public ResponseEntity<?> autocompleteByTermo(@RequestParam("termo") String termo) {
+			List<String> sites = promocaoRepository.findSitesByTermo(termo);
+			
+			System.out.println("\n\t"+sites+"\n");
+			return ResponseEntity.ok(sites);
+		}
+	
 	// ======================================ADD LIKES===============================================
 	
 		@PostMapping("/like/{id}")
@@ -59,7 +69,8 @@ public class PromocaoController {
 		Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
 		PageRequest pageRequest = PageRequest.of(0, 8, sort);
 		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));
-		System.out.println("\n\tSort: "+ sort + "\n\tPaga Request: " + pageRequest);
+		
+		//System.out.println("\n\tSort: "+ sort + "\n\tPaga Request: " + pageRequest);
 		
 		return "promo-list";
 	}
@@ -69,7 +80,9 @@ public class PromocaoController {
 		Sort sort = Sort.by(Sort.Direction.DESC, "dtCadastro");
 		PageRequest pageRequest = PageRequest.of(page, 8, sort);
 		model.addAttribute("promocoes", promocaoRepository.findAll(pageRequest));	
-		System.out.println("\n\tSort2: "+ sort + "\n\tPaga Request2: " + pageRequest + "\n\tPaga2: " + page);
+		
+		//System.out.println("\n\tSort2: "+ sort + "\n\tPaga Request2: " + pageRequest + "\n\tPaga2: " + page);
+		
 		return "promo-card";
 	}	
 	

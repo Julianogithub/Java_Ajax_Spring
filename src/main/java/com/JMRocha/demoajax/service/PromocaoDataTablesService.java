@@ -54,10 +54,14 @@ public class PromocaoDataTablesService {
 			if (search.isEmpty()) {
 				return repository.findAll(pageable);
 			}
-		
-		
-		//repository.findAll(pageable) --> | Popular a tabela, Realizar a paginação da tabela, 
-		//Faser a ordenaçaõ das colunas, Selecionar a quantidade de item na tabela 
+			
+			if (search.matches("^[0-9]+([.,][0-9]{2})?$")) {
+				search = search.replace(",", ".");
+				return repository.findByPreco(new BigDecimal(search), pageable);
+			}
+			
+			//Popular a tabela, Realizar a paginação da tabela, 
+			//Faser a ordenaçaõ das colunas, Selecionar a quantidade de item na tabela 
 			return repository.findByTituloOrSiteOrCategoria(search, pageable);
 	}
 

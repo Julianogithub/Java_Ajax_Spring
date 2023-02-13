@@ -1,5 +1,6 @@
 package com.JMRocha.demoajax.service;
 
+import java.math.BigDecimal;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -31,10 +32,11 @@ public class PromocaoDataTablesService {
 		
 		String column = columnName(request);
 		Sort.Direction direction = orderBy(request);
+		String search = searchBy(request);
 				
 		Pageable pageable = PageRequest.of(current, lenght, direction, column);
 		
-		Page<Promocao> page = queryBy(repository, pageable);
+		Page<Promocao> page = queryBy(search, repository, pageable);
 		
 		Map<String, Object> json = new LinkedHashMap<>();
 		json.put("draw", draw);
@@ -47,15 +49,29 @@ public class PromocaoDataTablesService {
 		return json;
 	}
 
-	private Page<Promocao> queryBy(PromocaoRepository repository, Pageable pageable) {
+		private Page<Promocao> queryBy(String search, PromocaoRepository repository, Pageable pageable) {
 		
+			if (search.isEmpty()) {
+				return repository.findAll(pageable);
+			}
 		
 		
 		//repository.findAll(pageable) --> | Popular a tabela, Realizar a paginação da tabela, 
 		//Faser a ordenaçaõ das colunas, Selecionar a quantidade de item na tabela 
-		return repository.findAll(pageable);
+			return repository.findByTituloOrSiteOrCategoria(search, pageable);
 	}
 
+	//============ Recuperando o valor digitado no campo Search =======================================
+		
+	private String searchBy(HttpServletRequest request) {
+		
+		return request.getParameter("search[value]").isEmpty()
+				? ""
+				: request.getParameter("search[value]");
+	}
+
+	//============ Ordenando colunas na tabela=========================================================
+	
 	private Direction orderBy(HttpServletRequest request) {
 		
 		String order = request.getParameter("order[0][dir]");

@@ -37,19 +37,18 @@ $(document).ready(function(){
 			},
 			{data: 'categoria.titulo'},
 			
-			//Cração do botões ( Editar )
+			//Cração do botões ( Editar e Excluir )
 			{orderable: false, 
              data: 'id',
                 "render": function(id) {					
-                    return '<a class="btn btn-success" href="/tabela/editar/'+ 
+                    return '<a class="btn btn-success" href="/especialidades/editar/'+ 
                     	id +'" role="button"> Editar | <i class="fas fa-edit"></i></a>';
                 }
             },
-            //Cração do botões ( Excluir )
             {orderable: false,
              data: 'id',
                 "render": function(id) {					
-                    return '<a class="btn btn-danger" href="/tabela/excluir/'+ 
+                    return '<a class="btn btn-danger" href="/especialidades/excluir/'+ 
                     	id +'" role="button" data-toggle="modal" data-target="#confirm-modal"> Excluir | <i class="fas fa-times-circle"></i></a>';
                 }               
             }

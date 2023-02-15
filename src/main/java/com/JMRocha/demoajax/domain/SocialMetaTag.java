@@ -34,10 +34,8 @@ public class SocialMetaTag implements Serializable {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	
 	@Override
 	public String toString() {
-		return "\t* SocialMetaTag  * Buscar no Site: \n\n\t * Site = " + site + "\n\t * Title = " 
-	                          + title + "\n\t * URL = " + url + "\n\t * Image = " + image + "]";
+		return "SocialMetaTag [site=" + site + ", title=" + title + ", url=" + url + ", image=" + image + "]";
 	}
 }

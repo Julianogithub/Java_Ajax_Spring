@@ -18,10 +18,9 @@ public class Categoria implements Serializable {
 	@Column(name = "titulo", nullable = false, unique = true)
 	private String titulo;
 	
-	
 	@JsonIgnore
-	@OneToMany(mappedBy = "categoria") // Uma Categoria podera ter N Promoções
-	private List<Promocao> promocoes;  // Relacionamento de dados ( 1 para *N )	
+	@OneToMany(mappedBy = "categoria")
+	private List<Promocao> promocoes;
 
 	public Long getId() {
 		return id;
@@ -49,6 +48,6 @@ public class Categoria implements Serializable {
 
 	@Override
 	public String toString() {
-		return "\n\t\tCategoria do Produto \n\t\t{\n\t\t|Id = " + id + ",\n\t\t|Titulo = " + titulo + "\n\t\t}";
+		return "Categoria [id=" + id + ", titulo=" + titulo + "]";
 	}
 }

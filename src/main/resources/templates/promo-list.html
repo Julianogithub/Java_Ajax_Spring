@@ -2,7 +2,6 @@
 <html layout:decorate="~{layout}">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="icon" th:href="@{/images/favicon.png}" />
 </head>
 <body>
 
@@ -10,7 +9,7 @@
 		<main role="main">
 		<section class="jumbotron text-center pt-3 pb-3">
 			<div class="container">
-				<h1 class="jumbotron-heading">Promo Spring - Ofertas mais recentes</h1>
+				<h1 class="jumbotron-heading">Promoção de Produtos - Ofertas mais recentes</h1><hr/>
 				<p class="lead text-muted">Aproveite a lista de ofertas e pague	menos por seus desejos.</p>
 
 				<form id="form-autocomplete">
@@ -35,8 +34,8 @@
 						    class="btn btn-warning btn-lg btn-block hidden"	style="display: none;"></button>
 				</div>
 
-				<div class="row" th:insert="promo-card"> 
-					<!--Comentario de como fazer um fraguimento ==> Fraguimentos da pagina promo-card-->	
+				<div class="row" th:insert="promo-card">
+
 				</div>
 
 				<div id="loading">
@@ -48,6 +47,6 @@
 		</main>
 	</div>
 
-	<script th:src="@{/js/promo-list.js}" th:fragment="js"></script>
+	<script th:src="@{/js/promo-list.js?v={version} ( version=${#strings.randomAlphanumeric(3)} )}" th:fragment="js"></script>
 </body>
 </html>

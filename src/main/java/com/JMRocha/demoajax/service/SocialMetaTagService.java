@@ -1,6 +1,5 @@
 package com.JMRocha.demoajax.service;
 
-
 import java.io.IOException;
 
 import org.jsoup.Jsoup;
@@ -11,15 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.JMRocha.demoajax.domain.SocialMetaTag;
 
-
-
 @Service
 public class SocialMetaTagService {
 	
 	private static Logger log = LoggerFactory.getLogger(SocialMetaTagService.class);
 	
 	public SocialMetaTag getSocialMetaTagByUrl(String url) {
-		
 		SocialMetaTag twitter = getTwitterCardByUrl(url);
 		if (!isEmpty(twitter)) {
 			return twitter;
@@ -34,7 +30,6 @@ public class SocialMetaTagService {
 	}
 	
 	private SocialMetaTag getTwitterCardByUrl(String url) {
-		
 		SocialMetaTag tag = new SocialMetaTag();
 		try {
 			Document doc = Jsoup.connect(url).get();
@@ -49,7 +44,6 @@ public class SocialMetaTagService {
 	}	
 
 	private SocialMetaTag getOpenGraphByUrl(String url) {
-		
 		SocialMetaTag tag = new SocialMetaTag();
 		try {
 			Document doc = Jsoup.connect(url).get();
@@ -64,7 +58,6 @@ public class SocialMetaTagService {
 	}		
 	
 	private boolean isEmpty(SocialMetaTag tag) {
-		
 		if (tag.getImage().isEmpty()) return true;
 		if (tag.getSite().isEmpty()) return true;
 		if (tag.getTitle().isEmpty()) return true;
@@ -72,3 +65,7 @@ public class SocialMetaTagService {
 		return false;
 	}
 }
+
+
+
+

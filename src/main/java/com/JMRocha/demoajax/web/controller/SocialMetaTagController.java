@@ -11,11 +11,8 @@ import com.JMRocha.demoajax.domain.SocialMetaTag;
 import com.JMRocha.demoajax.service.SocialMetaTagService;
 
 @Controller
-//@RequestMapping("/meta")
-@RequestMapping(value = SocialMetaTagController.META)
+@RequestMapping("/meta")
 public class SocialMetaTagController {
-		
-	protected static final String  META = "/meta";
 
 	@Autowired
 	private SocialMetaTagService service;
